@@ -1,0 +1,364 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Montessrat';
+    src: url(Assets/Montserrat-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: 'Dancing Script';
+    src: url(Assets/DANCINGSCRIPT-VARIABLEFONT_WGHT[1].TTF);
+}
+
+:root {
+    --bgColour: rgb(5,10,14);
+    --bgCardColour: rgb(24,28,39);
+    --bgTicket: rgb(29,36,52);
+    --green: rgb(64,144,72);
+    --yellow: rgb(237,219,112);
+    --fontColour: rgb(218, 218, 218);
+    --standardMargin: 1.5rem;
+    --standardPadding: 20px;
+    --standardBorderRadius: 15px;
+}
+
+
+
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bgColour);
+    color: var(--fontColour);
+    font-family: 'Montessrat','Courier New', Courier, monospace;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--fontColour);
+}
+
+input, button{
+    font-family: inherit;
+    background-color: var(--bgCardColour);
+}
+
+path{
+    stroke: var(--fontColour);
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+  .loader::before,
+  .loader::after {    
+    content:"";
+    grid-area: 1/1;
+    --c:no-repeat radial-gradient(farthest-side,#25b09b 92%,#0000);
+    background: 
+      var(--c) 50%  0, 
+      var(--c) 50%  100%, 
+      var(--c) 100% 50%, 
+      var(--c) 0    50%;
+    background-size: 12px 12px;
+    animation: l12 1s infinite;
+  }
+  .loader::before {
+    margin: 4px;
+    filter: hue-rotate(45deg);
+    background-size: 8px 8px;
+    animation-timing-function: linear
+  }
+  
+  @keyframes l12 { 
+    100%{transform: rotate(.5turn)}
+  }
+
+/* Navigation */
+
+.topNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    margin: var(--standardMargin);
+    background-color: var(--bgCardColour);
+    border-radius: var(--standardBorderRadius);
+}
+
+
+.logo img {
+    height: 3rem;
+}
+
+.profile img {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+}
+
+.topNav svg {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.logo {
+    font-family: 'Dancing Script', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-right: 5rem;
+}
+
+.searchBar input {
+    height: 40px;
+    width: 400px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid var(--fontColour);
+    margin-right: 1rem;
+    color: var(--fontColour);
+}
+
+.searchBar input:focus, .searchBar button:hover {
+    border: 2px solid var(--fontColour);
+}
+
+.searchBar button {
+    height: 40px;
+    width: 40px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+}
+
+.wallet, .profile {
+    margin-right: 2rem;
+    gap: .75rem;
+    cursor: pointer;
+}
+
+/* Main Content */
+
+.mainContent {
+    margin: var(--standardMargin);
+    position: relative;
+}
+
+/* Filters */
+.filters {
+margin:var(--standardMargin);
+gap: 2rem;
+}
+
+.filters ul {
+    gap: 1rem;
+}
+
+.filters ul li {
+    cursor: pointer;
+}
+
+.currentFilter {
+    color: var(--green);
+}
+
+
+/* Games */
+
+.leagueContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: var(--standardMargin);
+}
+
+.leagueContainer .match {
+    background-color: var(--bgCardColour);
+    padding: var(--standardPadding);
+    border-radius: var(--standardBorderRadius);
+}
+
+.match h3 {
+    font-size: 1.3rem;
+    margin-bottom: var(--standardMargin);
+}
+
+.gameDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.oddsButtons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.btn {
+    background-color: var(--bgTicket);
+    padding: 10px 20px;
+    width: 33%;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+
+/* Ticket */
+
+.ticket {
+    display: none;
+    width: 400px;
+    height: 600px;
+    background-color: var(--bgCardColour);
+    border-radius: var(--standardBorderRadius);
+    padding: var(--standardPadding);
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+    border: 3px solid var(--green);
+}
+
+.ticketContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+
+#clearBtn, .placeBet {
+    padding: 10px 20px;
+    color: inherit;
+    background-color: var(--green);
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+#clearBtn {
+    background-color: rgb(255, 103, 103);
+}
+
+.ticketBottom {
+    width: 100%;
+    position: absolute;
+    bottom: 1rem;
+}
+
+.oddsTotal {
+    justify-content: space-between;
+}
+
+.winsCalc {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--standardMargin);
+}
+
+.winsCalc input {
+    border: 2px solid var(--green);
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: inherit;
+}
+
+
+/* Modal */
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.836);
+    padding: var(--standardPadding);
+}
+
+.modalContent {
+    background-color: var(--bgTicket);
+    margin: 15% auto;
+    padding: var(--standardPadding);
+    border: 2px solid #888;
+    width: max-content;
+    border-radius: var(--standardBorderRadius);
+}
+
+.closeModal {
+    color: #aaa;
+    float: right;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.closeModal:hover ,.closeModal:focus {
+    color: var(--green);
+    text-decoration: none;
+    cursor: pointer;
+} 
+
+.modalContent {
+    text-align: center;
+}
+
+.modalContent p {
+    font-weight: bold;
+}
+
+.modalContent ul {
+    margin-top: 2rem;
+}
+
+.modalContent li {
+    margin-bottom: 1rem;
+}
+
+.modalContent button {
+    padding: 15px 30px;
+    color: inherit;
+    background-color: var(--green);
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+#modal {
+    display: none;
+  }
+  
+  #modal.show {
+    display: block !important;
+  }
+  
+  #modal2 {
+    display: none;
+  }
+  
+  #modal2.show {
+    display: block !important;
+  }
